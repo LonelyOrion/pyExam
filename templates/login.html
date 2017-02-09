@@ -1,4 +1,12 @@
 <body>
-Login page
-Welcome {{ userName }}
+	Login page<br/>
+	Welcome {{ userName }}
+
+	<form action="/loginCheck/" method="post">{% csrf_token %}
+		Username:<br/>
+		<input type="text" name="username"><br/>
+		Password:<br/>
+		<input type="password" name="password">
+		<input type="submit">
+	</form>
 </body>

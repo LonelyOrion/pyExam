@@ -19,5 +19,6 @@ import users.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^login/', users.views.login)
+    url(r'^login/', users.views.login),
+    url(r'^loginCheck/', users.views.loginCheck)
 ]
