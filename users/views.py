@@ -16,3 +16,9 @@ def loginCheck(request):
 	else:
 		raise Http404('错误的访问方式')
 	return render(request, 'loginCheck.html')
+
+def register(request):
+	return render(request, 'register.html')
+
+def registerCheck(request):
+	return render(request, 'registerCheck.html')
