@@ -7,20 +7,31 @@ from models import Users
 def login(request):
 	return render(request, 'login.html')
 
+def logout(request):
+	try:
+		del request.session['username']
+		del request.session['nickname']
+	except:
+		pass
+	return render(request, 'info.html', {'info': '登出成功'})
+
 def loginCheck(request):
 	try:
 		username = request.POST['username']
 		password = request.POST['password']
 	except:
-		return render(request, 'errorInfo.html', {'errorInfo': '错误的访问方式'})
+		return render(request, 'info.html', {'info': '错误的访问方式'})
 
 	user = Users.objects(username=username)
 	if len(user) == 0:
-		return render(request, 'errorInfo.html', {'errorInfo': '用户不存在'})
+		return render(request, 'info.html', {'info': '用户不存在'})
 
 	user = user[0]
 	if password != user.password:
-		return render(request, 'errorInfo.html', {'errorInfo': '密码错误'})
+		return render(request, 'info.html', {'info': '密码错误'})
+
+	request.session['username'] = user.username
+	request.session['nickname'] = user.nickname
 
 	return render(request, 'loginCheck.html', {'user': user})
 
@@ -33,12 +44,12 @@ def registerCheck(request):
 		password = request.POST['password']
 		nickname = request.POST['nickname']
 	except:
-		return render(request, 'errorInfo.html', {'errorInfo': '错误的访问方式'})
+		return render(request, 'info.html', {'info': '错误的访问方式'})
 
-	user = Users.objects(username=username)
+	user = Users.objects(username = username)
 	if len(user) == 0:
 		user = Users(username = username, password = password, nickname = nickname)
 		user.save()
 	else:
-		return render(request, 'errorInfo.html', {'errorInfo': '用户已存在'})
+		return render(request, 'info.html', {'info': '用户已存在'})
 	return render(request, 'registerCheck.html')

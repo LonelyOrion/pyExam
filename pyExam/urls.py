@@ -16,11 +16,15 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 import users.views
+import problems.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/$', users.views.login),
     url(r'^loginCheck/$', users.views.loginCheck),
     url(r'^register/$', users.views.register),
-    url(r'^registerCheck/$', users.views.registerCheck)
+    url(r'^registerCheck/$', users.views.registerCheck),
+    url(r'^showProblems/$', problems.views.showProblems),
+    url(r'^addProblems/$', problems.views.addProblems),
+    url(r'^addProblemsCheck/$', problems.views.addProblemsCheck)
 ]
