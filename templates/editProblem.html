@@ -1,0 +1,10 @@
+<body>
+	<form action="/editProblemsCheck/" method="post">{% csrf_token %}
+		<div align="center">
+			题干：<br/> <input type="text" name="problem" style="width:600px;" value="{{ problem.problem }}"><br/>
+			选项：<br/> <textarea name="options" style="width:600px;height:400px;">{{ problem.options }}</textarea><br/>
+			答案：<br/> <input type="text" name="answer" style="width:600px;" value="{{ problem.answer }}"><br/>
+			<input type="submit">
+		</div>
+	</form>
+</body>

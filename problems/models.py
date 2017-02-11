@@ -8,6 +8,7 @@ from mongoengine import *
 connect('pyExam')
 
 class Problems(Document):
+	myID = StringField()
 	problem = StringField()
 	options = ListField(StringField(), default=list)
 	answer = StringField()

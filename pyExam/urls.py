@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^registerCheck/$', users.views.registerCheck),
     url(r'^showProblems/$', problems.views.showProblems),
     url(r'^addProblems/$', problems.views.addProblems),
+    url(r'^editProblem/$', problems.views.editProblem),
     url(r'^addProblemsCheck/$', problems.views.addProblemsCheck)
 ]
