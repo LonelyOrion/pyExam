@@ -2,5 +2,17 @@
 您好，{{ nickname }}</br>
 <button><a href="/addProblems/">增加题目</a></button><br/>
 题目界面：
-
+<table>
+{% for problem in problems %}
+	<tr>
+		<td>{{ forloop.counter }}</td>
+		<td>{{ problem.problem }}</td>
+		<td>
+			{% for option in problem.options %}
+				<input type="radio" value="{{ forloop.counter }}">{{ option }}
+			{% endfor %}
+		</td>
+	</tr>
+{% endfor %}
+</table>
 </body>

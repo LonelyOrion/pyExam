@@ -1,8 +1,8 @@
 <body>
 	<form action="/addProblemsCheck/" method="post">{% csrf_token %}
-		题干：<input type="text" name="problem"><br/>
-		选项：<input type="text" name="options"><br/>
-		答案：<input type="text" name="answer"><br/>
+		题干：<br/> <input type="text" name="problem"><br/>
+		选项：<br/> <textarea name="options"></textarea><br/>
+		答案：<br/> <input type="text" name="answer"><br/>
 		<input type="submit">
 	</form>
 </body>
