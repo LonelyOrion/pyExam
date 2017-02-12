@@ -9,7 +9,6 @@ from utils import IDGenerator
 def showProblems(request):
 	nickname = request.session['nickname']
 	problems = Problems.objects()
-	
 	return render(request, 'showProblems.html', locals())
 
 def addProblems(request):
