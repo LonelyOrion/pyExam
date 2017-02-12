@@ -37,5 +37,6 @@ urlpatterns = [
     url(r'^addProblemsCheck/$', problems.views.addProblemsCheck),
 
     url(r'^showExams/$', exams.views.showExams),
-    url(r'^addExam/$', exams.views.addExam)
+    url(r'^addExam/$', exams.views.addExam),
+    url(r'^addExamCheck/$', exams.views.addExamCheck)
 ]

@@ -6,14 +6,20 @@
 
 <table border="1" align="center">
 <tr><th></th><th></th><th></th><th></th><th></th><th colspan="2"></th></tr>
+	{% for exam in exams %}
 	<tr>
-		<td></td>
-		<td></td>
+		<td>{{ exam.name }}</td>
+		<td>
+			{% for problem in exam.problems %}
+				{{ problem.problem }}<br/>
+			{% endfor %}
+		</td>
 		<td></td>
 		<td></td>
 		<td></td>
 		<td></td>
 		<td></td>
 	</tr>
+	{% endfor %}
 </table>
 </body>
