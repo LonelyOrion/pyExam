@@ -26,8 +26,10 @@ urlpatterns = [
     url(r'^registerCheck/$', users.views.registerCheck),
     url(r'^showProblems/$', problems.views.showProblems),
     url(r'^addProblem/$', problems.views.addProblem),
+    url(r'^addProblems/$', problems.views.addProblems),
     url(r'^editProblem/$', problems.views.editProblem),
     url(r'^deleteProblem/$', problems.views.deleteProblem),
     url(r'^editProblemCheck/$', problems.views.editProblemCheck),
-    url(r'^addProblemCheck/$', problems.views.addProblemCheck)
+    url(r'^addProblemCheck/$', problems.views.addProblemCheck),
+    url(r'^addProblemsCheck/$', problems.views.addProblemsCheck)
 ]
