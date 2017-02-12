@@ -1,9 +1,9 @@
 <body>
 <p align="right">您好，{{ nickname }}</p>
-<p align="right"><button><a href="/addProblems/">增加题目</a></button><br/></p>
+<p align="right"><button><a href="/addProblem/">增加题目</a></button><br/></p>
 
 <table border="1" align="center">
-<tr><th>序号</th><th>题干</th><th>题肢</th><th>答案</th><th colspan="2">操作</th></tr>
+<tr><th>序号</th><th>题干</th><th>题肢</th><th>题型</th><th>答案</th><th colspan="2">操作</th></tr>
 {% for problem in problems %}
 	<tr>
 		<td>{{ forloop.counter }}</td>
@@ -12,6 +12,11 @@
 			{% for option in problem.options %}
 				<input type="radio" name="problem{{ forloop.parentloop.counter }}" value="{{ forloop.counter }}">{{ option }}
 			{% endfor %}
+		</td>
+		<td>
+			{% ifequal problem.type 'single' %}单选{% endifequal %}
+			{% ifequal problem.type 'multiple' %}多选{% endifequal %}
+			{% ifequal problem.type 'correction' %}判断{% endifequal %}
 		</td>
 		<td>{{ problem.answer }}</td>
 		<td><button><a href="/editProblem?myID={{ problem.myID }}">修改</a></button></td>

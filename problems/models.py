@@ -12,3 +12,4 @@ class Problems(Document):
 	problem = StringField()
 	options = ListField(StringField(), default=list)
 	answer = StringField()
+	type = StringField()

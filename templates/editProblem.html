@@ -5,6 +5,10 @@
 			题干：<br/> <input type="text" name="problem" style="width:600px;" value="{{ problem.problem }}"><br/>
 			选项：<br/> <textarea name="options" style="width:600px;height:400px;">{{ problem.options }}</textarea><br/>
 			答案：<br/> <input type="text" name="answer" style="width:600px;" value="{{ problem.answer }}"><br/>
+			类型：<br/>
+			<input type="radio" name="type" value="single" {% ifequal problem.type 'single' %}checked="checked"{% endifequal %}>单选
+			<input type="radio" name="type" value="multiple" {% ifequal problem.type 'multiple' %}checked="checked"{% endifequal %}>多选
+			<input type="radio" name="type" value="correction" {% ifequal problem.type 'correction' %}checked="checked"{% endifequal %}>判断<br/>
 			<input type="submit">
 		</div>
 	</form>

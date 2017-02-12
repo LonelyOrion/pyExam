@@ -1,9 +1,13 @@
 <body>
-	<form action="/addProblemsCheck/" method="post">{% csrf_token %}
+	<form action="/addProblemCheck/" method="post">{% csrf_token %}
 		<div align="center">
 			题干：<br/> <input type="text" name="problem" style="width:600px;"><br/>
 			选项：<br/> <textarea name="options" style="width:600px;height:400px;"></textarea><br/>
 			答案：<br/> <input type="text" name="answer" style="width:600px;"><br/>
+			类型：<br/>
+			<input type="radio" name="type" value="single">单选
+			<input type="radio" name="type" value="multiple">多选
+			<input type="radio" name="type" value="correction">判断<br/>
 			<input type="submit">
 		</div>
 	</form>

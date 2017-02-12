@@ -11,23 +11,24 @@ def showProblems(request):
 	problems = Problems.objects()
 	return render(request, 'showProblems.html', locals())
 
-def addProblems(request):
-	return render(request, 'addProblems.html')
+def addProblem(request):
+	return render(request, 'addProblem.html')
 
-def addProblemsCheck(request):
+def addProblemCheck(request):
 	try:
 		rawProblem = request.POST['problem']
 		rawOptions = request.POST['options']
 		rawAnswer = request.POST['answer']
+		rawType = request.POST['type']
 	except:
 		return render(request, 'info.html', {'info': '提交内容不完整', 'link': '/showProblems/'})
 
 	myID = IDGenerator().getRandomID()
-	print myID
 	problem = rawProblem.strip('\r\n')
 	options = rawOptions.split('\n')
 	answer = rawAnswer.strip('\r\n')
-	problem = Problems(myID=myID, problem = problem, options = options, answer = answer)
+	type = rawType
+	problem = Problems(myID=myID, problem = problem, options = options, answer = answer, type = type)
 	problem.save()
 
 	return HttpResponseRedirect('/showProblems/')
@@ -56,6 +57,7 @@ def editProblemCheck(request):
 		rawOptions = request.POST['options']
 		rawAnswer = request.POST['answer']
 		myID = request.POST['myID']
+		rawType = request.POST['type']
 	except:
 		return render(request, 'info.html', {'info': '提交内容不完整', 'link':'/showProblems/'})
 
@@ -69,6 +71,7 @@ def editProblemCheck(request):
 	problem.problem = rawProblem.strip('\r\n')
 	problem.options = rawOptions.split('\n')
 	problem.answer = rawAnswer
+	problem.type = rawType
 	problem.save()
 
 	return HttpResponseRedirect('/showProblems/')
