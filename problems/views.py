@@ -48,3 +48,41 @@ def editProblem(request):
 	problem.options = '\n'.join(problem.options)
 	print problem.options
 	return render(request, 'editProblem.html', {'problem': problem})
+
+def editProblemCheck(request):
+	try:
+		rawProblem = request.POST['problem']
+		rawOptions = request.POST['options']
+		rawAnswer = request.POST['answer']
+		myID = request.POST['myID']
+	except:
+		return render(request, 'info.html', {'info': '提交内容不完整'})
+
+	problem = Problems.objects(myID = myID)
+	if len(problem) == 0:
+		info = '错误的请求ID'
+		return render(request, 'info.html', locals())
+
+	problem = problem[0]
+	problem.problem = rawProblem.strip('\r\n')
+	problem.options = rawOptions.split('\n')
+	problem.answer = rawAnswer
+	problem.save()
+
+	return HttpResponseRedirect('/showProblems/')
+
+def deleteProblem(request):
+	try:
+		myID = request.GET['myID']
+	except:
+		info = '错误的请求方式'
+		return render(request, 'info.html', locals())
+
+	problem = Problems.objects(myID = myID)
+	if len(problem) == 0:
+		info = '错误的请求ID'
+		return render(request, 'info.html', locals())
+
+	problem = problem[0]
+	problem.delete()
+	return HttpResponseRedirect('/showProblems/')

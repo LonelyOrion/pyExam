@@ -3,7 +3,7 @@
 <p align="right"><button><a href="/addProblems/">增加题目</a></button><br/></p>
 
 <table border="1" align="center">
-<tr><th>序号</th><th>题干</th><th>题肢</th><th colspan="2">操作</th></tr>
+<tr><th>序号</th><th>题干</th><th>题肢</th><th>答案</th><th colspan="2">操作</th></tr>
 {% for problem in problems %}
 	<tr>
 		<td>{{ forloop.counter }}</td>
@@ -13,8 +13,9 @@
 				<input type="radio" value="{{ forloop.counter }}">{{ option }}
 			{% endfor %}
 		</td>
-		<td><button><a href="/editProblem/?myID={{ problem.myID }}">修改</a></button></td>
-		<td><button><a href="/deleteProblems/?myID={{ problem.myID }}">删除</a></button></td>
+		<td>{{ problem.answer }}</td>
+		<td><button><a href="/editProblem?myID={{ problem.myID }}">修改</a></button></td>
+		<td><button><a href="/deleteProblem?myID={{ problem.myID }}">删除</a></button></td>
 	</tr>
 {% endfor %}
 </table>

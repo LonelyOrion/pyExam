@@ -27,5 +27,7 @@ urlpatterns = [
     url(r'^showProblems/$', problems.views.showProblems),
     url(r'^addProblems/$', problems.views.addProblems),
     url(r'^editProblem/$', problems.views.editProblem),
+    url(r'^deleteProblem/$', problems.views.deleteProblem),
+    url(r'^editProblemCheck/$', problems.views.editProblemCheck),
     url(r'^addProblemsCheck/$', problems.views.addProblemsCheck)
 ]
