@@ -10,7 +10,7 @@
 		<td>{{ problem.problem }}</td>
 		<td>
 			{% for option in problem.options %}
-				<input type="radio" value="{{ forloop.counter }}">{{ option }}
+				<input type="radio" name="problem{{ forloop.parentloop.counter }}" value="{{ forloop.counter }}">{{ option }}
 			{% endfor %}
 		</td>
 		<td>{{ problem.answer }}</td>

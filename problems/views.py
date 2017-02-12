@@ -21,7 +21,7 @@ def addProblemsCheck(request):
 		rawOptions = request.POST['options']
 		rawAnswer = request.POST['answer']
 	except:
-		return render(request, 'info.html', {'info': '提交内容不完整'})
+		return render(request, 'info.html', {'info': '提交内容不完整', 'link': '/showProblems/'})
 
 	myID = IDGenerator().getRandomID()
 	print myID
@@ -38,10 +38,12 @@ def editProblem(request):
 		myID = request.GET['myID']
 	except:
 		info = '错误的请求方式'
+		link = '/showProblems/'
 		return render(request, 'info.html', locals())
 	problem = Problems.objects(myID = myID)
 	if len(problem) == 0:
 		info = '错误的请求ID'
+		link = '/showProblems/'
 		return render(request, 'info.html', locals())
 
 	problem = problem[0]
@@ -56,11 +58,12 @@ def editProblemCheck(request):
 		rawAnswer = request.POST['answer']
 		myID = request.POST['myID']
 	except:
-		return render(request, 'info.html', {'info': '提交内容不完整'})
+		return render(request, 'info.html', {'info': '提交内容不完整', 'link':'/showProblems/'})
 
 	problem = Problems.objects(myID = myID)
 	if len(problem) == 0:
 		info = '错误的请求ID'
+		link = '/showProblems/'
 		return render(request, 'info.html', locals())
 
 	problem = problem[0]
@@ -76,11 +79,13 @@ def deleteProblem(request):
 		myID = request.GET['myID']
 	except:
 		info = '错误的请求方式'
+		link = '/showProblems/'
 		return render(request, 'info.html', locals())
 
 	problem = Problems.objects(myID = myID)
 	if len(problem) == 0:
 		info = '错误的请求ID'
+		link = '/showProblems/'
 		return render(request, 'info.html', locals())
 
 	problem = problem[0]
