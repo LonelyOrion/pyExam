@@ -13,22 +13,22 @@ def logout(request):
 		del request.session['nickname']
 	except:
 		pass
-	return render(request, 'info.html', {'info': '登出成功'})
+	return render(request, 'info.html', {'info': '登出成功', 'link':'/login/'})
 
 def loginCheck(request):
 	try:
 		username = request.POST['username']
 		password = request.POST['password']
 	except:
-		return render(request, 'info.html', {'info': '错误的访问方式'})
+		return render(request, 'info.html', {'info': '错误的访问方式', 'link':'/login/'})
 
 	user = Users.objects(username=username)
 	if len(user) == 0:
-		return render(request, 'info.html', {'info': '用户不存在'})
+		return render(request, 'info.html', {'info': '用户不存在', 'link':'/login/'})
 
 	user = user[0]
 	if password != user.password:
-		return render(request, 'info.html', {'info': '密码错误'})
+		return render(request, 'info.html', {'info': '密码错误', 'link':'/login/'})
 
 	request.session['username'] = user.username
 	request.session['nickname'] = user.nickname
@@ -44,12 +44,12 @@ def registerCheck(request):
 		password = request.POST['password']
 		nickname = request.POST['nickname']
 	except:
-		return render(request, 'info.html', {'info': '错误的访问方式'})
+		return render(request, 'info.html', {'info': '错误的访问方式', 'link':'/login/'})
 
 	user = Users.objects(username = username)
 	if len(user) == 0:
 		user = Users(username = username, password = password, nickname = nickname)
 		user.save()
 	else:
-		return render(request, 'info.html', {'info': '用户已存在'})
+		return render(request, 'info.html', {'info': '用户已存在', 'link':'/login/'})
 	return render(request, 'registerCheck.html')
