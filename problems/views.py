@@ -55,11 +55,10 @@ def editProblem(request):
 		myID = request.GET['myID']
 	except:
 		return render(request, 'info.html', {'info': '错误的请求方式', 'link': '/showProblems/'})
-	problem = Problems.objects(myID = myID)
-	if len(problem) == 0:
+	problem = Problems.objects(myID = myID).first()
+	if not problem:
 		return render(request, 'info.html', {'info': '错误的请求ID', 'link': '/showProblems/'})
 
-	problem = problem[0]
 	problem.options = '\n'.join(problem.options)
 	print problem.options
 	return render(request, 'editProblem.html', {'problem': problem})
@@ -74,11 +73,10 @@ def editProblemCheck(request):
 	except:
 		return render(request, 'info.html', {'info': '提交内容不完整', 'link':'/showProblems/'})
 
-	problem = Problems.objects(myID = myID)
-	if len(problem) == 0:
+	problem = Problems.objects(myID = myID).first()
+	if not problem:
 		return render(request, 'info.html', {'info': '错误的请求ID', 'link':'/showProblems/'})
 
-	problem = problem[0]
 	problem.problem = rawProblem.strip('\r\n')
 	problem.options = rawOptions.split('\r\n')
 	problem.answer = rawAnswer
@@ -93,10 +91,9 @@ def deleteProblem(request):
 	except:
 		return render(request, 'info.html', {'info': '错误的请求方式', 'link':'/showProblems/'})
 
-	problem = Problems.objects(myID = myID)
-	if len(problem) == 0:
+	problem = Problems.objects(myID = myID).first()
+	if not problem:
 		return render(request, 'info.html', {'info': '错误的请求ID', 'link':'/showProblems/'})
 
-	problem = problem[0]
 	problem.delete()
 	return HttpResponseRedirect('/showProblems/')

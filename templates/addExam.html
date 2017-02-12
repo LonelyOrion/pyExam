@@ -1,0 +1,59 @@
+<body>
+<div align="center">
+	<form action="/addExamCheck/" method="post">{% csrf_token %}
+		考试名：<input type="text" style="width:600px" name="name"><br/>
+
+		单选题：</br>
+		<table border="1">
+			<tr><th>序号</th><th>题干</th><th>题肢</th><th>答案</th><th>是否选择</th></tr>
+			{% for single in singles %}
+				<tr>
+					<td>{{ forloop.counter }}</td>
+					<td>{{ single.problem }}</td>
+					<td>
+							{% for option in single.options %}
+								<input type="radio" name="single{{ forloop.parentloop.counter }}">{{ option }}	
+							{% endfor %}
+					</td>
+					<td>{{ single.answer }}</td>
+					<td><input type="radio" name="{{ single.myID}}" value="true">是<input type="radio" checked="checked" name="{{ single.myID }}" value="false">否</td>
+				</tr>
+			{% endfor %}
+		</table>
+		多选题：</br>
+		<table border="1">
+			<tr><th>序号</th><th>题干</th><th>题肢</th><th>答案</th><th>是否选择</th></tr>
+			{% for multiple in multiples %}
+				<tr>
+					<td>{{ forloop.counter }}</td>
+					<td>{{ multiple.problem }}</td>
+					<td>
+							{% for option in multiple.options %}
+								<input type="radio" name="multiple{{ forloop.parentloop.counter }}">{{ option }}	
+							{% endfor %}
+					</td>
+					<td>{{ multiple.answer }}</td>
+					<td><input type="radio" name="{{ multiple.myID}}" value="true">是<input type="radio" checked="checked" name="{{ multiple.myID }}" value="false">否</td>
+				</tr>
+			{% endfor %}
+		</table>
+		判断题：</br>
+		<table border="1">
+			<tr><th>序号</th><th>题干</th><th>题肢</th><th>答案</th><th>是否选择</th></tr>
+			{% for correction in corrections %}
+				<tr>
+					<td>{{ forloop.counter }}</td>
+					<td>{{ correction.problem }}</td>
+					<td>
+							{% for option in correction.options %}
+								<input type="radio" name="correction{{ forloop.parentloop.counter }}">{{ option }}	
+							{% endfor %}
+					</td>
+					<td>{{ correction.answer }}</td>
+					<td><input type="radio" name="{{ correction.myID}}" value="true">是<input type="radio" checked="checked" name="{{ correction.myID }}" value="false">否</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</form>
+</div>
+</body>

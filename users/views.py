@@ -22,11 +22,10 @@ def loginCheck(request):
 	except:
 		return render(request, 'info.html', {'info': '错误的访问方式', 'link':'/login/'})
 
-	user = Users.objects(username=username)
-	if len(user) == 0:
+	user = Users.objects(username=username).first()
+	if not user:
 		return render(request, 'info.html', {'info': '用户不存在', 'link':'/login/'})
 
-	user = user[0]
 	if password != user.password:
 		return render(request, 'info.html', {'info': '密码错误', 'link':'/login/'})
 
